@@ -25,7 +25,10 @@ describe('AtomCfMonitor', () => {
       });
 
       runs(() => {
-        expect(workspaceElement.querySelector('.atom-cf-monitor')).toExist();
+        const root = workspaceElement.querySelector('.atom-cf-monitor');
+        expect(root).toExist();
+        expect(root.querySelector('#events-table')).toExist();
+        expect(root.querySelector('#events-panel')).toExist();
       });
     });
 
@@ -46,7 +49,10 @@ describe('AtomCfMonitor', () => {
       });
 
       runs(() => {
-        expect(workspaceElement.querySelector('.atom-cf-monitor')).toExist();
+        const root = workspaceElement.querySelector('.atom-cf-monitor');
+        expect(root).toExist();
+        expect(root.querySelector('#events-table')).toExist();
+        expect(root.querySelector('#events-panel')).toExist();
       });
     });
   });
