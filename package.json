@@ -14,5 +14,9 @@
   },
   "dependencies": {
     "etch": "^0.11.0"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.33.0",
+    "bluebird": "^3.5.0"
   }
 }

@@ -4,7 +4,8 @@ import AtomCfMonitorView from '../lib/atom-cf-monitor-view';
 
 describe('AtomCfMonitorView', () => {
   const URI = 'uri'
-  const view = new AtomCfMonitorView({uri: URI})
+  const MOCK_MONITOR_PATH = '../spec/fixtures/mock-monitor-task.js'
+  const view = new AtomCfMonitorView({uri: URI, taskPath: MOCK_MONITOR_PATH})
 
   describe('.getURI', () => {
     it('returns correct uri', () => {
@@ -45,6 +46,22 @@ describe('AtomCfMonitorView', () => {
       expect(view.statusCSS(undefined)).toBe(expected);
       expect(view.statusCSS()).toBe(expected);
       expect(view.statusCSS(false)).toBe(expected);
+    });
+  });
+
+  describe('.start', () => {
+    it('updates state after running the monitor task', () => {
+      spyOn(view, 'updateEvents').andCallThrough()
+      view.start();
+      waitsFor(() => {
+        return view.updateEvents.calls.length > 0
+      });
+
+      runs(() => {
+        expect(view.updateEvents.calls.length).toBe(1)
+        expect(view.events.length).toBe(2)
+        expect(view.status).toBe('UPDATE_COMPLETE')
+      });
     });
   });
 });
